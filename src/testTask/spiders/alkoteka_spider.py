@@ -36,10 +36,10 @@ class AlkotekaSpider(scrapy.Spider):
                     product_url,
                     callback=self.parse_product, meta={'slug': product.get('slug')})
 
-        next_page = response.meta['page'] + 1
-        yield scrapy.Request(
-            f"{response.meta['request_url']}&page={next_page}",
-            callback=self.parse_category, meta={'page': next_page, 'request_url': response.meta['request_url']})
+            next_page = response.meta['page'] + 1
+            yield scrapy.Request(
+                f"{response.meta['request_url']}&page={next_page}",
+                callback=self.parse_category, meta={'page': next_page, 'request_url':       response.meta['request_url']})
 
     def parse_product(self, response):
         try:
